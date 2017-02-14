@@ -1,0 +1,64 @@
+{% load static %}
+{% block contents %}
+
+<style type="text/css">
+	
+.piece {
+	width: 80px;
+	height: 80px;
+}
+
+table {
+
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 5px solid #663300;
+	height: 90px;
+	width: 90px;
+	padding: 5px;
+
+	text-align: center; 
+}
+
+table tr:nth-child(2n) td:nth-child(2n+1) {
+	background-color:white;
+}
+table tr:nth-child(2n+1) td:nth-child(2n) {
+	background-color:white;
+}
+
+</style>
+{% load mathfilters %}
+
+<center>
+	<span>Wellcome {{ user.username }} <br><a href="{% url 'logout'%}">Logout</a></span>
+	<table>
+		{% for i in state %}
+		<tr>
+			<td><h2>{{ 8|sub:forloop.counter0 }}</h2></td>
+			{% for j in i %}
+			<td width="50" height="50" bgcolor=#994d00>
+				<img class="piece" src="{% static j %}" width="60" height="60">
+			</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+		<tr>
+		{% for i in " ABCDEFGH" %}
+			<td><h2>{{ i }}</h2></td>
+		{% endfor %}
+		</tr>
+	</table>
+	</br>
+	<form method="POST">
+		{% csrf_token %}
+		<input type="text" name="move">
+		<input type="submit" name="" value="move">
+	</form>
+	<h5>
+		{{ error }}
+	</h5>
+</center>
+{% endblock %}

@@ -16,10 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from chessapp import views
 
 urlpatterns = [
     url(r'^accounts/login/$', auth_views.login, name='login'),
     url(r'^accounts/logout/$', auth_views.logout, name='logout'),
+    url(r'^accounts/signup/$', views.signup, name='signup'),
+    url(r'^activate/.*/[a-f0-9]{40}$', views.activate, name="activate"),
+    url(r'^accounts/profile/$',views.profile , name="profile"),
     url(r'^admin/', admin.site.urls),
-    url(r'^chessapp/', include('chessapp.urls')),
+    url(r'^$', views.game, name='game'),
+
 ]

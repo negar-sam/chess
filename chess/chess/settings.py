@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chessapp',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
@@ -119,4 +120,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'icp95.project@gmail.com'
+EMAIL_HOST_PASSWORD = 'ostadnowzari'
+
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'chess')
+STATICFILES_DIRS = [
+    "chessapp/static"
+]
+LOGIN_REDIRECT_URL="/"
+LOGOUT_REDIRECT_URL="/accounts/login/"
